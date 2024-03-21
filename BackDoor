@@ -300,16 +300,7 @@ workspace.ChildAdded:Connect(function(child)
 	end
 end)
 
-function checkDistance(part)
-	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
-		return false
-	end
-	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
-	if distanceToPart <= 10 then
-		return true
-	end
-	return false
-end
+
 
 for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
