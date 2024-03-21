@@ -425,9 +425,7 @@ end)
 
 spawn(function()
 	game:GetService("RunService").RenderStepped:Connect(function()
-		workspace.CurrentCamera.FieldOfView = 120
 		game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 21
 		game.Lighting.Brightness = 2
 		game.Lighting.ClockTime = 14
 		game.Lighting.FogEnd = 100000
