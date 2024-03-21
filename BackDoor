@@ -422,6 +422,7 @@ game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer:GetPropertyCh
 	local formattedTime = string.format("%02d:%02d", math.floor(game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value / 60), game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value % 60)
 	timer_2.Text = formattedTime
 end)
+
 spawn(function()
 	game:GetService("RunService").RenderStepped:Connect(function()
 		game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
@@ -430,5 +431,10 @@ spawn(function()
 		game.Lighting.FogEnd = 100000
 		game.Lighting.GlobalShadows = false
 		game.Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if child:IsA("BasePart") and child.CanCollide == false then
+				child.CanCollide = false
+			end
+		end
 	end)
 end)
