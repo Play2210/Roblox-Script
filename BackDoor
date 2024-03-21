@@ -400,4 +400,25 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	end
 end)
 
+notify("", nil, "🐦 Script made by: kiwib.")
+notify("👁️ Backdoor Lookman", true)
+notify("", nil, "⚡ Haste is now server-sided so it cannot be bypassed, annoying visuals removed.")
 
+if game:GetService("ReplicatedStorage").FloorClientStuff.ClientRemote:FindFirstChild("Haste") then
+	game:GetService("ReplicatedStorage").FloorClientStuff.ClientRemote.Haste:Destroy()
+end
+
+local Notified = false
+
+game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer:GetPropertyChangedSignal("Value"):Connect(function()
+	if game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value == 0 then
+		if not Notified then
+			Notified = true
+			notify("", nil, "⚡ Haste has spawned! Quickly get to a lever!")
+		end
+	else
+		Notified = false
+	end
+	local formattedTime = string.format("%02d:%02d", math.floor(game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value / 60), game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value % 60)
+	timer_2.Text = formattedTime
+end)
