@@ -369,7 +369,15 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	for _, v in pairs(child:GetDescendants()) do
 		if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
 			selection(v, "🚪 Cửa")
-		
+		elseif v.Name == "KeyObtain" then
+			selection(v, "🔑")
+			spawn(function()
+				while task.wait() do
+					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
+						fireproximityprompt(v.ModulePrompt)
+					end
+				end
+			end)
 		elseif v.Name == "Backdoor_Wardrobe" then
 			selection(v, "Tủ")
 		elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
