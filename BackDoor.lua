@@ -313,7 +313,7 @@ end
 
 for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-		selection(v, "Cửa")
+		selection(v, "🚪 Cửa")
 	elseif v.Name == "KeyObtain" then
 		selection(v, "🔑")
 		spawn(function()
@@ -353,7 +353,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	task.wait(1)
 	for _, v in pairs(child:GetDescendants()) do
 		if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-			selection(v, "Cửa")
+			selection(v, "🚪 Cửa")
 		elseif v.Name == "KeyObtain" then
 			selection(v, "🔑")
 			spawn(function()
@@ -365,22 +365,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 			end)
 		elseif v.Name == "Backdoor_Wardrobe" then
 			selection(v, "Tủ")
-		elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v)
-					end
-				end
-			end)
-		elseif v.Name == "LootPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v)
-					end
-				end
-			end)
+		
 		end
 	end
 end)
