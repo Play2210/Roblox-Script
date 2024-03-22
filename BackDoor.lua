@@ -311,7 +311,47 @@ function checkDistance(part)
 	return false
 end
 
-
+for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+		selection(v, "🚪 Cửa")
+	elseif v.Name == "KeyObtain" then
+		selection(v, "🔑")
+		spawn(function()
+			while task.wait() do
+				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
+					fireproximityprompt(v.ModulePrompt)
+				end
+			end
+		end)
+	elseif v.Name == "Backdoor_Wardrobe" then
+		selection(v, "Tủ")
+	elseif v.Name == "TimerLever" then
+		selection(v, "⏳ Thời Gian")
+		spawn(function()
+			while task.wait() do
+				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
+					fireproximityprompt(v.ActivateEventPrompt)
+				end
+			end
+		end)
+	elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
+		spawn(function()
+			while task.wait() do
+				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
+					fireproximityprompt(v)
+				end
+			end
+		end)
+	elseif v.Name == "LootPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
+		spawn(function()
+			while task.wait() do
+				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
+					fireproximityprompt(v)
+				end
+			end
+		end)
+	end
+end
 
 workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	spawn(function()
