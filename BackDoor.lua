@@ -201,7 +201,7 @@ function notify(entity, bypassed, other)
 			tem.UIStroke.UIGradient.Rotation += 1
 		end
 	end)
-
+	
 	spawn(function()
 		while true do
 			task.wait(0.01)
@@ -316,13 +316,10 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		selection(v, "🚪 Cửa")
 	elseif v.Name == "KeyObtain" then
 		selection(v, "🔑")
-		
 	elseif v.Name == "Backdoor_Wardrobe" then
 		selection(v, "Tủ")
 	elseif v.Name == "TimerLever" then
 		selection(v, "⏳ Thời Gian")
-		
-	
 	end
 end
 
@@ -331,7 +328,6 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 		task.wait(5)
 		if child.Assets:FindFirstChild("TimerLever") then
 			selection(child.Assets.TimerLever, "⏳ Thời gian")
-			
 		end
 	end)
 	task.wait(1)
@@ -340,10 +336,8 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 			selection(v, "🚪 Cửa")
 		elseif v.Name == "KeyObtain" then
 			selection(v, "🔑")
-			
 		elseif v.Name == "Backdoor_Wardrobe" then
 			selection(v, "Tủ")
-		
 		end
 	end
 end)
