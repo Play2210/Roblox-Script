@@ -183,7 +183,7 @@ function notify(entity, bypassed, other)
 	sound()
 	local tem = template:Clone()
 	tem.Visible = true
-	tem.TextLabel.Text = entity .. " Has just spawned!"
+	tem.TextLabel.Text = entity .. " Đã xuất hiện!"
 	if bypassed then
 		tem.TextLabel.Text = entity .. " Has been bypassed!"
 	end
@@ -313,7 +313,7 @@ end
 
 for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-		selection(v, "Door")
+		selection(v, "🚪")
 	elseif v.Name == "KeyObtain" then
 		selection(v, "🔑")
 		spawn(function()
@@ -368,9 +368,9 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	task.wait(1)
 	for _, v in pairs(child:GetDescendants()) do
 		if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-			selection(v, "🚪 Door")
+			selection(v, "🚪")
 		elseif v.Name == "KeyObtain" then
-			selection(v, "🔑 Key")
+			selection(v, "🔑")
 			spawn(function()
 				while task.wait() do
 					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
@@ -379,7 +379,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 				end
 			end)
 		elseif v.Name == "Backdoor_Wardrobe" then
-			selection(v, "🗄️ Wardrobe")
+			selection(v, "Tủ")
 		elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
 			spawn(function()
 				while task.wait() do
@@ -400,7 +400,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 	end
 end)
 
-notify("", nil, "🐦 Script made by: kiwib.")
+notify("", nil, "🐦 Script được làm bởi: Khánh .")
 notify("👁️ Backdoor Lookman", true)
 notify("", nil, "⚡ Haste is now server-sided so it cannot be bypassed, annoying visuals removed.")
 
