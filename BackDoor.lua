@@ -317,7 +317,6 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	elseif v.Name == "KeyObtain" then
 		selection(v, "🔑")
 		
-		end
 	elseif v.Name == "Backdoor_Wardrobe" then
 		selection(v, "Tủ")
 	elseif v.Name == "TimerLever" then
