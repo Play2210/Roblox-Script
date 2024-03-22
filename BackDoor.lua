@@ -321,13 +321,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		selection(v, "Tủ")
 	elseif v.Name == "TimerLever" then
 		selection(v, "⏳ Thời Gian")
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ActivateEventPrompt)
-				end
-			end
-		end)
+		
 	elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
 		spawn(function()
 			while task.wait() do
@@ -352,11 +346,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 		task.wait(5)
 		if child.Assets:FindFirstChild("TimerLever") then
 			selection(child.Assets.TimerLever, "⏳ Thời gian")
-			spawn(function()
-				while task.wait() do
-					fireproximityprompt(child.Assets.TimerLever.ActivateEventPrompt)
-				end
-			end)
+			
 		end
 	end)
 	task.wait(1)
@@ -365,13 +355,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 			selection(v, "🚪 Cửa")
 		elseif v.Name == "KeyObtain" then
 			selection(v, "🔑")
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v.ModulePrompt)
-					end
-				end
-			end)
+			
 		elseif v.Name == "Backdoor_Wardrobe" then
 			selection(v, "Tủ")
 		elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
