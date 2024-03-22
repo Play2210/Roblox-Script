@@ -285,118 +285,43 @@ function selection(child, name)
 	end)
 end
 
-workspace.ChildAdded:Connect(function(child)
-	if child.Name == "BackdoorLookman" then
-		if child then
-			task.wait()
-			child.Parent = game:GetService("Debris")
-			return
+
+
+notify("", nil, "🐦 Script được làm bởi: Khánh .")
+notify("👁️ Lookman", true)
+notify("", nil, "⚡ Haste đang ở phía máy chủ nên không thể xóa bỏ, đã xóa JumpScare.")
+
+if game:GetService("ReplicatedStorage").FloorClientStuff.ClientRemote:FindFirstChild("Haste") then
+	game:GetService("ReplicatedStorage").FloorClientStuff.ClientRemote.Haste:Destroy()
+end
+
+local Notified = false
+
+game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer:GetPropertyChangedSignal("Value"):Connect(function()
+	if game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value == 0 then
+		if not Notified then
+			Notified = true
+			notify("", nil, "⚡ Haste đã xuất hiện! Tìm thêm thời gian ngay!")
 		end
-		notify("👁️ Lookman")
-		selection(child:WaitForChild("Core"), "👁️ Lookman")
-	elseif child.Name == "BackdoorRush" then
-		notify("💨 Blitz")
-		selection(child:WaitForChild("Main"), "💨 Blitz")
+	else
+		Notified = false
 	end
+	local formattedTime = string.format("%02d:%02d", math.floor(game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value / 60), game:GetService("ReplicatedStorage").FloorClientStuff.DigitalTimer.Value % 60)
+	timer_2.Text = formattedTime
 end)
 
-function checkDistance(part)
-	if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") or not part then
-		return false
-	end
-	local distanceToPart = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - part.Position).magnitude
-	if distanceToPart <= 10 then
-		return true
-	end
-	return false
-end
-
-for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
-	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-		selection(v, "🚪 Cửa")
-	elseif v.Name == "KeyObtain" then
-		selection(v, "🔑")
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ModulePrompt)
-				end
+spawn(function()
+	game:GetService("RunService").RenderStepped:Connect(function()
+		game:GetService("ReplicatedStorage").RemotesFolder.MotorReplication:FireServer(0, 90, 0, false)
+		game.Lighting.Brightness = 2
+		game.Lighting.ClockTime = 14
+		game.Lighting.FogEnd = 100000
+		game.Lighting.GlobalShadows = false
+		game.Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if child:IsA("BasePart") and child.CanCollide == false then
+				child.CanCollide = false
 			end
-		end)
-	elseif v.Name == "Backdoor_Wardrobe" then
-		selection(v, "Tủ")
-	elseif v.Name == "TimerLever" then
-		selection(v, "⏳ Thời Gian")
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ActivateEventPrompt)
-				end
-			end
-		end)
-	elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v)
-				end
-			end
-		end)
-	elseif v.Name == "LootPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v)
-				end
-			end
-		end)
-	end
-end
-
-workspace.CurrentRooms.ChildAdded:Connect(function(child)
-	spawn(function()
-		task.wait(5)
-		if child.Assets:FindFirstChild("TimerLever") then
-			selection(child.Assets.TimerLever, "⏳ Thời gian")
-			spawn(function()
-				while task.wait() do
-					fireproximityprompt(child.Assets.TimerLever.ActivateEventPrompt)
-				end
-			end)
 		end
 	end)
-	task.wait(1)
-	for _, v in pairs(child:GetDescendants()) do
-		if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-			selection(v, "🚪 Cửa")
-		elseif v.Name == "KeyObtain" then
-			selection(v, "🔑")
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v.ModulePrompt)
-					end
-				end
-			end)
-		elseif v.Name == "Backdoor_Wardrobe" then
-			selection(v, "Tủ")
-		elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v)
-					end
-				end
-			end)
-		elseif v.Name == "LootPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-			spawn(function()
-				while task.wait() do
-					if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-						fireproximityprompt(v)
-					end
-				end
-			end)
-		end
-	end
 end)
-
