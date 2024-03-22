@@ -316,13 +316,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		selection(v, "🚪 Cửa")
 	elseif v.Name == "KeyObtain" then
 		selection(v, "🔑")
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v.ModulePrompt)
-				end
-			end
-		end)
+		
 	elseif v.Name == "Backdoor_Wardrobe" then
 		selection(v, "Tủ")
 	elseif v.Name == "TimerLever" then
