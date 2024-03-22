@@ -313,9 +313,9 @@ end
 
 for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
-		selection(v, "🚪 Door")
+		selection(v, "Door")
 	elseif v.Name == "KeyObtain" then
-		selection(v, "🔑 Key")
+		selection(v, "🔑")
 		spawn(function()
 			while task.wait() do
 				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
@@ -324,7 +324,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 			end
 		end)
 	elseif v.Name == "Backdoor_Wardrobe" then
-		selection(v, "🗄️ Wardrobe")
+		selection(v, "Tủ")
 	elseif v.Name == "TimerLever" then
 		selection(v, "⏳ Timer Lever")
 		spawn(function()
