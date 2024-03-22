@@ -315,7 +315,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
 		selection(v, "🚪 Cửa")
 	elseif v.Name == "KeyObtain" then
-		selection(v, "🔑")
+		selection(v, ".")
 		spawn(function()
 			while task.wait() do
 				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
