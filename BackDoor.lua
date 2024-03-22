@@ -334,22 +334,7 @@ for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				end
 			end
 		end)
-	elseif v.Name == "ActivateEventPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v)
-				end
-			end
-		end)
-	elseif v.Name == "LootPrompt" and v:IsA("ProximityPrompt") and v.Parent.Parent.Name == "DrawerContainer" then
-		spawn(function()
-			while task.wait() do
-				if checkDistance(v:FindFirstChildWhichIsA("BasePart")) then
-					fireproximityprompt(v)
-				end
-			end
-		end)
+	
 	end
 end
 
@@ -401,7 +386,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function(child)
 end)
 
 notify("", nil, "🐦 Script được làm bởi: Khánh .")
-notify("👁️ Lookman", hoạt động)
+notify("👁️ Lookman", true)
 notify("", nil, "⚡ Haste đang ở phía máy chủ nên không thể xóa bỏ, đã xóa JumpScare.")
 
 if game:GetService("ReplicatedStorage").FloorClientStuff.ClientRemote:FindFirstChild("Haste") then
